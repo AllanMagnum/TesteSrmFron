@@ -1,0 +1,48 @@
+<div id="main" class="container">
+    
+    <div class="col-md-3"></div> 
+    
+    <div id="top" class="row">        
+        <div class="col-md-3">
+            <h2>Itens</h2>
+        </div> 
+    </div> <!-- /#top -->
+
+    <div id="list" class="row">       
+        <div class="table-responsive col-md-12">
+            <table class="table table-striped table-hover table-bordered" cellspacing="1" cellpadding="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Limite de Crédito</th>
+                        <th>Risco</th>
+                        <th class="actions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let cliente of clientes">
+                        <tr>
+                            <td style="width:5%; text-align: center;">{{cliente.idCliente}}</td>
+                            <td style="width:30%">{{cliente.nome}}</td>
+                            <td style="width:20%; text-align: right;" >{{cliente.limiteCredito | currency:'BRL':true}}</td>
+                            <td style="width:15%">{{cliente.riscoDto.descricao}}</td>
+                            <td style="width:30%; text-align: center;" >
+                                <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>&nbsp;
+                                <button class="btn btn-danger btn-xs" (click)="open(cliente.idCliente)">Excluir</button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>    
+        </div>
+    </div> <!-- /#list -->
+
+    <div id="bottom" class="row">
+        <div class="col-md-3">
+            <a href="/clientes/create" class="btn btn-primary pull-right h2">Novo Item</a>
+        </div> 
+    </div> <!-- /#bottom -->
+</div>  <!-- /#main -->
+
+<app-receber-cliente-criado></app-receber-cliente-criado>

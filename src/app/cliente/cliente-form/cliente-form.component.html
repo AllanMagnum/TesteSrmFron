@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Formulário de Cliente</h1>
+    <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+      <div class="form-group">
+          <label for="idCliente">Id</label>
+          <input type="text" class="form-control" id="idCliente"  
+                  [(ngModel)]="cliente.idCliente" name="idCliente" readonly>
+       </div>
+
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome"  
+               required 
+               [(ngModel)]="cliente.nome" name="nome"
+               #nome="ngModel">
+        <div [hidden]="nome.valid || nome.pristine"
+               class="alert alert-danger">
+            Nome é obrigatório
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="limiteCredito">Limite de Crédito</label>
+        <input type="number" min="0" step="1" class="form-control" id="limiteCredito" 
+               [(ngModel)]="cliente.limiteCredito" name="limiteCredito" #limiteCredito="ngModel" required>
+          <div [hidden]="limiteCredito.valid || limiteCredito.pristine"
+                class="alert alert-danger">
+              Limite é obrigatório
+          </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="tipoRisco">Risco</label>
+        <select class="form-control" id="tipoRisco" [(ngModel)]="cliente.riscoDto.descricao" name="tipoRisco" required>
+          <option *ngFor="let tipoRisco of tipos" [value]="tipoRisco">{{tipoRisco}}</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn btn-success" >Submit</button>&nbsp;
+      <button type="submit" class="btn btn-warning" (click)="cancel()" >Cancel</button>
+  
+    </form>
+  </div>
+  
